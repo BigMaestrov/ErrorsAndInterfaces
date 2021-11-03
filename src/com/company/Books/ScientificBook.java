@@ -12,12 +12,8 @@ public class ScientificBook extends Book {
         super();
         setCitationIndex(0.0);
     }
-    public ScientificBook(String author, String name, int cost, int year,
-                          int citationIndex) {
-        setAuthor(author);
-        setName(name);
-        setCost(cost);
-        setYear(year);
+    public ScientificBook(String author, String name, int cost, int year, int citationIndex) {
+        super(author, name, cost, year);
         setCitationIndex(citationIndex);
     }
     public ScientificBook(String author, int year) {

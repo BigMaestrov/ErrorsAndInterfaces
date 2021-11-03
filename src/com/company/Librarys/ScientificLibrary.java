@@ -2,6 +2,7 @@ package com.company.Librarys;
 
 import com.company.Books.Book;
 import com.company.Books.ScientificBook;
+import com.company.Exceptions.InvalidBookCountException;
 import com.company.Halls.ScientificLibraryHall;
 
 public class ScientificLibrary implements ILibrary{
@@ -24,9 +25,11 @@ public class ScientificLibrary implements ILibrary{
         return scientificLibraryHalls.getItemByID(id).getData();
     }
 
-    public ScientificBook getBookByID(int id) {
-        ScientificBook[] booksInLibrary = new
-                ScientificBook[sumOfAllBooks()];
+    public ScientificBook getBookByID(int id)throws InvalidBookCountException{
+        if(id<0 || id>sumOfAllBooks()){
+            throw new InvalidBookCountException();
+        }
+        ScientificBook[] booksInLibrary = new ScientificBook[sumOfAllBooks()];
         int numBookInLibrary = 0;
         //Запись в новый массив
         for (int i = 0; i < scientificLibraryHalls.getLength(); i++) {
@@ -38,8 +41,7 @@ public class ScientificLibrary implements ILibrary{
         return booksInLibrary[id];
     }
 
-    public void setScientificLibraryHalls(BidirectionalList
-                                                  scientificLibraryHalls) {
+    public void setScientificLibraryHalls(BidirectionalList scientificLibraryHalls) {
         this.scientificLibraryHalls = null;
         this.scientificLibraryHalls = new BidirectionalList();
         for (int i = 0; i < scientificLibraryHalls.getLength(); i++) {
@@ -103,8 +105,10 @@ public class ScientificLibrary implements ILibrary{
         }
     }
 
-    public void changeHallByID(int numHall, ScientificLibraryHall
-            newHall) {
+    public void changeHallByID(int numHall, ScientificLibraryHall newHall) throws InvalidBookCountException{
+        if(numHall<0 || numHall>getNumHalls()){
+            throw new InvalidBookCountException();
+        }
         scientificLibraryHalls.removeByID(numHall);
         scientificLibraryHalls.addByID(numHall, newHall);
     }

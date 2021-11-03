@@ -17,8 +17,7 @@ public class ChildrenBook extends Book {
         super();
         setMinimalAge(0);
     }
-    public ChildrenBook(String author, String name, int cost, int
-            year, int minimalAge) {
+    public ChildrenBook(String author, String name, int cost, int year, int minimalAge) {
         super(author, name, cost, year);
         setMinimalAge(minimalAge);
     }
