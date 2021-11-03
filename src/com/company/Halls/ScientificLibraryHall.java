@@ -2,7 +2,7 @@ package com.company.Halls;
 
 import com.company.Books.ScientificBook;
 
-public class ScientificLibraryHall {
+public class ScientificLibraryHall implements IHall{
     private List scientificBooks;
     private String name;
     public List getScientificBooks() {
@@ -42,7 +42,7 @@ public class ScientificLibraryHall {
             System.out.print(scientificBooks.getItemByID(i).getData().getName() + ", ");
         }
     }
-    public static int getCostOfAllBooks(ScientificLibraryHall
+    public int getCostOfAllBooks(ScientificLibraryHall
                                                 childrenLibraryHall) {
         int cost = 0;
         for (int i = 0; i < childrenLibraryHall.scientificBooks.getLength();
