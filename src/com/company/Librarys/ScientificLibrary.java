@@ -4,7 +4,7 @@ import com.company.Books.Book;
 import com.company.Books.ScientificBook;
 import com.company.Halls.ScientificLibraryHall;
 
-public class ScientificLibrary {
+public class ScientificLibrary implements ILibrary{
     int numHalls;
     BidirectionalList scientificLibraryHalls;
 
@@ -89,7 +89,7 @@ public class ScientificLibrary {
         return booksInLibrary;
     }
 
-    private void swap(Book[] books, int left, int minId) {
+    public void swap(Book[] books, int left, int minId) {
         Book book = books[left];
         books[left] = books[minId];
         books[minId] = book;
