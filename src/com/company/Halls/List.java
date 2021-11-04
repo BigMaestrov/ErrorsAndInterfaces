@@ -1,36 +1,32 @@
 package com.company.Halls;
 
-import com.company.Books.ScientificBook;
+import com.company.Books.Book;
+import com.company.Books.IBook;
 
 public class List {
     class Item {
-        private ScientificBook data;
+        private IBook data;
         private Item next;
 
         //конструктор
-        public Item(ScientificBook st, Item nextItem) {
+        public Item(IBook st, Item nextItem) {
             //копируем поля из параметра st в поле data
-            data = new ScientificBook();
-            data.setAuthor(st.getAuthor());
-            data.setName(st.getName());
-            data.setCost(st.getCost());
-            data.setCitationIndex(st.getCitationIndex());
-            data.setYear(st.getYear());
+            data = st;
             //Устанавливаем указатель последнего на голову
             this.next = nextItem;
         }
 
         //конструктор
         public Item() {
-            data = new ScientificBook();
+            data = new Book();
             this.next = this;
         }
 
-        public void setData(ScientificBook book) {
+        public void setData(IBook book) {
             this.data = book;
         }
 
-        public ScientificBook getData() {
+        public IBook getData() {
             return this.data;
         }
 
@@ -54,7 +50,7 @@ public class List {
     public List(int length) {
         Head = new Item();
         for (int i = 0; i < length; i++) {
-            addToEnd(new ScientificBook());
+            addToEnd(new Book());
         }
     }
 
@@ -76,7 +72,7 @@ public class List {
         return temp;
     }
 
-    public void addToEnd(ScientificBook st) {
+    public void addToEnd(IBook st) {
         length++;
         Item prev = Head;
         for (int i = 0; i < length; i++) {
@@ -86,7 +82,7 @@ public class List {
         return;
     }
 
-    public void addByID(int ID, ScientificBook elem) {
+    public void addByID(int ID, IBook elem) {
         length++;
         if (isEmpty()) {
             Head.next = new Item(elem, Head);
@@ -120,10 +116,6 @@ public class List {
     }
 
     void showBookInfo(Item temp) {
-        System.out.println(temp.data.getAuthor() + " " +
-                temp.data.getName() + " " +
-                temp.data.getCost() + " " +
-                temp.data.getYear() + " " +
-                temp.data.getCitationIndex());
+        System.out.println(temp.data.toString());
     }
 }

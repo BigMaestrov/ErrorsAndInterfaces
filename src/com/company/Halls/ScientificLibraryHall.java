@@ -1,5 +1,6 @@
 package com.company.Halls;
 
+import com.company.Books.IBook;
 import com.company.Books.ScientificBook;
 import com.company.Exceptions.BookIndexOutOfBoundsException;
 import com.company.Exceptions.InvalidBookCountException;
@@ -50,28 +51,26 @@ public class ScientificLibraryHall implements IHall{
             System.out.print(scientificBooks.getItemByID(i).getData().getName() + ", ");
         }
     }
-    public int getCostOfAllBooks(ScientificLibraryHall childrenLibraryHall) {
+    public int getCostOfAllBooks(IHall childrenLibraryHall) {
         int cost = 0;
-        for (int i = 0; i < childrenLibraryHall.scientificBooks.getLength();
-             i++) {
-            cost +=
-                    childrenLibraryHall.scientificBooks.getItemByID(i).getData().getCost();
+        for (int i = 0; i < childrenLibraryHall.getScientificBooks().getLength(); i++) {
+            cost += childrenLibraryHall.getScientificBooks().getItemByID(i).getData().getCost();
         }
         return cost;
     }
-    public ScientificBook getBookByID(int number) throws BookIndexOutOfBoundsException {
+    public IBook getBookByID(int number) throws BookIndexOutOfBoundsException {
         if(number<0 || number > scientificBooks.getLength()){
             throw new BookIndexOutOfBoundsException();
         }
         return this.scientificBooks.getItemByID(number).getData();
     }
-    public void redactBook(ScientificBook book, int number) throws BookIndexOutOfBoundsException{
+    public void redactBook(IBook book, int number) throws BookIndexOutOfBoundsException{
         if(number<0 || number > scientificBooks.getLength()){
             throw new BookIndexOutOfBoundsException();
         }
-        this.scientificBooks.getItemByID(number).setData(book);
+        this.scientificBooks.getItemByID(number).setData((ScientificBook) book);
     }
-    public void addBook(ScientificBook book, int number) throws BookIndexOutOfBoundsException{
+    public void addBook(IBook book, int number) throws BookIndexOutOfBoundsException{
         if(number<0 || number > scientificBooks.getLength()+1){
             throw new BookIndexOutOfBoundsException();
         }
@@ -83,7 +82,7 @@ public class ScientificLibraryHall implements IHall{
         }
         scientificBooks.removeByID(number);
     }
-    public ScientificBook getBestBook() {
+    public IBook getBestBook() {
         int max = 0;
         int indexMax = 0;
         for (int i = 0; i < scientificBooks.getLength(); i++) {

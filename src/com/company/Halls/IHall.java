@@ -1,5 +1,6 @@
 package com.company.Halls;
 
+import com.company.Books.IBook;
 import com.company.Books.ScientificBook;
 
 public interface IHall {
@@ -8,10 +9,10 @@ public interface IHall {
     public String getName();
     public void setName(String name);
     public void printBooks() ;
-    public  int getCostOfAllBooks(ScientificLibraryHall childrenLibraryHall);
-    public ScientificBook getBookByID(int number);
-    public void redactBook(ScientificBook book, int number);
-    public void addBook(ScientificBook book, int number);
+    public  int getCostOfAllBooks(IHall childrenLibraryHall);
+    public IBook getBookByID(int number);
+    public void redactBook(IBook book, int number);
+    public void addBook(IBook book, int number);
     public void deleteBook(int number);
-    public ScientificBook getBestBook() ;
+    public IBook getBestBook() ;
 }

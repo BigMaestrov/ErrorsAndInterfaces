@@ -1,7 +1,9 @@
 package com.company.Librarys;
 
 import com.company.Books.Book;
+import com.company.Books.IBook;
 import com.company.Books.ScientificBook;
+import com.company.Halls.IHall;
 import com.company.Halls.ScientificLibraryHall;
 
 public interface ILibrary {
@@ -12,31 +14,31 @@ public interface ILibrary {
 
     public BidirectionalList getScientificLibraryHalls();
 
-    public ScientificLibraryHall getChildrenLibraryHallsByID(int id);
+    public IHall getChildrenLibraryHallsByID(int id);
 
-    public ScientificBook getBookByID(int id);
+    public IBook getBookByID(int id);
 
     public void setScientificLibraryHalls(BidirectionalList scientificLibraryHalls) ;
 
     public int sumOfAllBooks();
 
-    public ScientificBook[] selectionSortBookInHallByCost() ;
+    public IBook[] selectionSortBookInHallByCost() ;
 
-    void swap(Book[] books, int left, int minId);
+    void swap(IBook[] books, int left, int minId);
 
     public void printNamesAndNumBooksOfHalls();
 
-    public void changeHallByID(int numHall, ScientificLibraryHall newHall);
+    public void changeHallByID(int numHall, IHall newHall);
 
-    public void changeBookByID(int num, ScientificBook book);
+    public void changeBookByID(int num, IBook book);
 
-    public void addBookByID(int number, ScientificBook book);
+    public void addBookByID(int number, IBook book);
 
     public void deleteBookFromLibrary(int number);
 
-    public ScientificBook getBestBook();
+    public IBook getBestBook();
 
     public void printBooks();
 
-    public void printBooks(ScientificBook[] books);
+    public void printBooks(IBook[] books);
 }

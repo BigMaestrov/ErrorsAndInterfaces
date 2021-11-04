@@ -1,10 +1,11 @@
 package com.company.Librarys;
 
+import com.company.Halls.IHall;
 import com.company.Halls.ScientificLibraryHall;
 
-public class BidirectionalList {
+public class BidirectionalList{
     class Item {
-        private ScientificLibraryHall data;
+        private IHall data;
         private BidirectionalList.Item next;
         private BidirectionalList.Item prev;
         //конструктор
@@ -20,14 +21,13 @@ public class BidirectionalList {
         }
         //конструктор
         public Item() {
-            data = new ScientificLibraryHall();
             this.next = this;
             this.prev = this;
         }
-        public void setData(ScientificLibraryHall hall) {
+        public void setData(IHall hall) {
             this.data = hall;
         }
-        public ScientificLibraryHall getData() {
+        public IHall getData() {
             return this.data;
         }
         public BidirectionalList.Item getNext() {
@@ -56,19 +56,19 @@ public class BidirectionalList {
         return temp;
     }
     /*функция добавления новой записи в конец списка*/
-    public void addToEnd(ScientificLibraryHall st) {
+    public void addToEnd(IHall st) {
         length++;
         BidirectionalList.Item prev = Head;
         for (int i = 0; i < length; i++) {
             prev = prev.next;
         }
-        prev.next = new BidirectionalList.Item(st, prev.next,prev);
+        prev.next = new BidirectionalList.Item((ScientificLibraryHall) st, prev.next,prev);
         return;
     }
-    void addByID(int ID, ScientificLibraryHall elem) {
+    void addByID(int ID, IHall elem) {
         length++;
         if (isEmpty()) {
-            Head.next = new BidirectionalList.Item(elem, Head, Head);
+            Head.next = new BidirectionalList.Item((ScientificLibraryHall) elem, Head, Head);
             return;
         }
         if (ID < 0) ID = 0;
@@ -77,8 +77,7 @@ public class BidirectionalList {
         for (int i = 0; i < ID; i++) {
             prev = prev.next;
         }
-        prev.next = new BidirectionalList.Item(elem, prev.next,
-                prev.prev);
+        prev.next = new BidirectionalList.Item((ScientificLibraryHall) elem, prev.next, prev.prev);
         return;
     }
     void removeByID(int ID) {
