@@ -2,6 +2,8 @@ package com.company.Librarys;
 
 import com.company.Books.Book;
 import com.company.Books.ScientificBook;
+import com.company.Exceptions.BookIndexOutOfBoundsException;
+import com.company.Exceptions.HallIndexOutOfBoundsException;
 import com.company.Exceptions.InvalidBookCountException;
 import com.company.Halls.ScientificLibraryHall;
 
@@ -25,9 +27,9 @@ public class ScientificLibrary implements ILibrary{
         return scientificLibraryHalls.getItemByID(id).getData();
     }
 
-    public ScientificBook getBookByID(int id)throws InvalidBookCountException{
+    public ScientificBook getBookByID(int id)throws BookIndexOutOfBoundsException {
         if(id<0 || id>sumOfAllBooks()){
-            throw new InvalidBookCountException();
+            throw new BookIndexOutOfBoundsException();
         }
         ScientificBook[] booksInLibrary = new ScientificBook[sumOfAllBooks()];
         int numBookInLibrary = 0;
@@ -105,9 +107,9 @@ public class ScientificLibrary implements ILibrary{
         }
     }
 
-    public void changeHallByID(int numHall, ScientificLibraryHall newHall) throws InvalidBookCountException{
+    public void changeHallByID(int numHall, ScientificLibraryHall newHall) throws HallIndexOutOfBoundsException {
         if(numHall<0 || numHall>getNumHalls()){
-            throw new InvalidBookCountException();
+            throw new HallIndexOutOfBoundsException();
         }
         scientificLibraryHalls.removeByID(numHall);
         scientificLibraryHalls.addByID(numHall, newHall);
